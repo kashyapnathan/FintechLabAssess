@@ -6,7 +6,8 @@ import matplotlib.pyplot as plt
 import json
 import re
 
-openai.api_key = 'sk-proj-Iu32WxOCLgMJVaIu1CU0T3BlbkFJf0iP8q6sBwCwIS32Xtam'
+api_key = os.getenv('OPENAI_API_KEY')
+openai.api_key = api_key
 
 all_out = []
 
@@ -59,35 +60,35 @@ def load_and_analyze_file(file_path):
         return None
 
 
-# def plot_sentiment(sentiment_data, file_name):
-#     try:
-#         # Convert string keys to integers if they are supposed to represent numerical values
-#         sections = list(range(len(sentiment_data)))
-#         # Extract sentiment values if they are between -100 and 100 if not, set to x % 100 or x % -100 respectively
-#         sentiments = [float(sentiment_data[key]) if -100 <= float(sentiment_data[key]) <= 100 else float(
-#             sentiment_data[key]) % 100 if float(sentiment_data[key]) > 100 else float(sentiment_data[key]) % -100 for key in sentiment_data]
+def plot_sentiment(sentiment_data, file_name):
+    try:
+        # Convert string keys to integers if they are supposed to represent numerical values
+        sections = list(range(len(sentiment_data)))
+        # Extract sentiment values if they are between -100 and 100 if not, set to x % 100 or x % -100 respectively
+        sentiments = [float(sentiment_data[key]) if -100 <= float(sentiment_data[key]) <= 100 else float(
+            sentiment_data[key]) % 100 if float(sentiment_data[key]) > 100 else float(sentiment_data[key]) % -100 for key in sentiment_data]
 
-#         # Diagnostic print
-#         print("Sections (x):", sections)
-#         print("Sentiments (y):", sentiments)
+        # Diagnostic print
+        print("Sections (x):", sections)
+        print("Sentiments (y):", sentiments)
 
-#         plt.figure(figsize=(10, 5))
-#         plt.plot(sections, sentiments, marker='o', linestyle='-',
-#                  color='blue')  # Explicitly setting color and line style
-#         plt.title('Sentiment Trend in 10-K Filing')
-#         plt.xlabel('Year')
-#         plt.ylabel('Sentiment Score')
+        plt.figure(figsize=(10, 5))
+        plt.plot(sections, sentiments, marker='o', linestyle='-',
+                 color='blue')  # Explicitly setting color and line style
+        plt.title('Sentiment Trend in 10-K Filing')
+        plt.xlabel('Year')
+        plt.ylabel('Sentiment Score')
 
-#         # Check if the axes ranges are appropriate for the data
-#         plt.xlim(0, max(sections)+1)
-#         plt.ylim(min(sentiments)-0.01, max(sentiments)+0.01)
+        # Check if the axes ranges are appropriate for the data
+        plt.xlim(0, max(sections)+1)
+        plt.ylim(min(sentiments)-0.01, max(sentiments)+0.01)
 
-#         image_path = f"{file_name}_sentiment.png"
-#         plt.savefig(f"{file_name}_sentiment.png")
-#         plt.close()
-#         return image_path
-#     except Exception as e:
-#         print(f"Error in plotting sentiment: {e}")
+        image_path = f"{file_name}_sentiment.png"
+        plt.savefig(f"{file_name}_sentiment.png")
+        plt.close()
+        return image_path
+    except Exception as e:
+        print(f"Error in plotting sentiment: {e}")
 
 
 def analyze_ticker_data(ticker):
@@ -114,7 +115,6 @@ def analyze_ticker_data(ticker):
     if not sentiment_scores:
         return {"error": "Failed to analyze any filings for this ticker."}
 
-    # plot_sentiment(sentiment_scores, ticker)
     return sentiment_scores, ticker
 
 
