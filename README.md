@@ -77,7 +77,7 @@ This project is licensed under the MIT License - see the LICENSE file for more d
 ## Contact Information
 
 - **Kashyap M. Nathan** - kashyapnathan2@gmail.com
-- **Project Link** - [https://github.com/kashyapnathan/FintechLabAssess](https://github.com/your-username/financial-sentiment-analysis)
+- **Project Link** - [https://github.com/kashyapnathan/FintechLabAssess]
 
 ---
 
