@@ -76,7 +76,7 @@ This project is licensed under the MIT License - see the LICENSE file for more d
 
 ## Contact Information
 
-- **Your Name** - [your-email@example.com](mailto:your-email@example.com)
+- **Kashyap M. Nathan** - kashyapnathan2@gmail.com
 - **Project Link** - [https://github.com/your-username/financial-sentiment-analysis](https://github.com/your-username/financial-sentiment-analysis)
 
 ---
