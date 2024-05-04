@@ -1,5 +1,8 @@
 # Financial Sentiment Analysis Dashboard
 
+## CHECK IT OUT HERE!!
+https://whispering-harbor-32293-4381ae66e58e.herokuapp.com/
+
 ## Project Overview
 
 This project, developed for the Summer Research Programming Task at the Financial Services Innovation Lab, Georgia Tech, automates the downloading and analysis of SEC 10-K filings and visualizes insights in a user-friendly web dashboard. It allows users to enter a company ticker, automatically fetches the relevant SEC filings, analyzes the text for sentiment and trends, and presents this data graphically.
