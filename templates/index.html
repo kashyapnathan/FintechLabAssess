@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Sentiment Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #f0f0f0;
+        }
+        
+        h1 {
+            color: #4fc3f7;
+            text-align: center;
+        }
+        
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        label {
+            margin-right: 10px;
+            color: #b0bec5;
+        }
+        
+        input[type="text"] {
+            padding: 8px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #333;
+            color: #f0f0f0;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: #4fc3f7;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #29b6f6;
+        }
+        
+        #coordinates {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #333;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        #coordinates h2 {
+            margin-top: 0;
+            color: #4fc3f7;
+        }
+        
+        #coordinates table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        #coordinates th, #coordinates td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #555;
+        }
+        
+        #coordinates th {
+            background-color: #1a1a1a;
+            color: #b0bec5;
+        }
+        
+        #results {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .spinner {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .spinner::after {
+            content: "";
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 4px solid #555;
+            border-top-color: #4fc3f7;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        </style>
+</head>
+<body>
+    <h1>Financial Sentiment Analysis</h1>
+    <form id="analyzeForm">
+        <label for="ticker">Enter Company Ticker:</label>
+        <input type="text" id="ticker" name="ticker" required>
+        <button type="submit">Analyze</button>
+    </form>
+    <div class="spinner"></div>
+    <div id="results"></div>
+    <div id="coordinates"></div>
+    
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+    document.getElementById('analyzeForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting via the browser
+    const ticker = document.getElementById('ticker').value;
+    const spinner = document.querySelector('.spinner');
+    const coordinatesDiv = document.getElementById('coordinates');
+    const resultsDiv = document.getElementById('results');
+
+    spinner.style.display = 'block'; // Show spinner before fetch begins
+    coordinatesDiv.innerHTML = ''; // Clear previous results
+    resultsDiv.innerHTML = '';
+
+    fetch(`/analyze/${ticker}`)
+        .then(response => response.json()) // Ensure JSON is properly parsed
+        .then(sentimentScores => {
+            let tableHTML = '<h2>Sentiment Scores</h2><table><tr><th>Date</th><th>Sentiment Score</th></tr>';
+            Object.entries(sentimentScores).forEach(([date, score]) => {
+                tableHTML += `<tr><td>${date}</td><td>${score}</td></tr>`;
+            });
+            tableHTML += '</table>';
+            coordinatesDiv.innerHTML = tableHTML;
+
+            fetch(`/plot/${ticker}`)
+    .then(response => response.json())
+    .then(data => {
+        try {
+            console.log('Plotly data:', data);
+            Plotly.newPlot('results', data.data, data.layout);
+        } catch (error) {
+            console.error('Plotly error:', error);
+        }
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+    }); });
+});
+</script>
+</body>
+</html>
