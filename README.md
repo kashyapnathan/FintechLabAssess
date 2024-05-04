@@ -1,6 +1,6 @@
 # Financial Sentiment Analysis Dashboard
 
-## CHECK IT OUT HERE!!
+## CHECK IT OUT HERE OR WATCH THE DEMO VIDEO!!
 https://whispering-harbor-32293-4381ae66e58e.herokuapp.com/
 
 ## Project Overview
