@@ -4,6 +4,20 @@
 
 This project, developed for the Summer Research Programming Task at the Financial Services Innovation Lab, Georgia Tech, automates the downloading and analysis of SEC 10-K filings and visualizes insights in a user-friendly web dashboard. It allows users to enter a company ticker, automatically fetches the relevant SEC filings, analyzes the text for sentiment and trends, and presents this data graphically.
 
+## Files
+
+### download_filings.py
+Contains all of the download logic (1.1)
+
+### analyze_filings.py
+Contains all of the LLM analysis and visualization (1.2)
+
+### backend.py
+Contains all of the backend logic (2)
+
+### index.html
+Contains all of the frontend logic (2)
+
 ## Tech Stack and Rationale
 
 ### Python
