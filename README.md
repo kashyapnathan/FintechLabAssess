@@ -80,5 +80,3 @@ This project is licensed under the MIT License - see the LICENSE file for more d
 - **Project Link** - https://github.com/kashyapnathan/FintechLabAssess
 
 ---
-
-This README is designed to be comprehensive, explaining the setup, usage, technology choices, and rationale clearly to both users and potential contributors. Adjust the content as necessary to fit the specifics of your project and personal contributions.
